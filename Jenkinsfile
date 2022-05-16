@@ -3,17 +3,11 @@ node {
 	def mvnHome
 	stage('Preparation') {
         checkout scm
-             mvnHome = tool 'M3'
+             mvn = tool 'M3'
     }
     stage('Build') {
         
-        withEnv(["MVN_HOME=$mvnHome"]) {
-            if (isUnix()) {
-                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
-            } else {
-                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
-            }
-        }
+        sh "mvn clean package"
     }
   
     stage('Build image') {
