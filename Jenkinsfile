@@ -1,13 +1,16 @@
 node {
     def app
-	def mvn
+	def mvnhome
 	stage('Preparation') {
         checkout scm
-             mvn = tool 'M3'
+             mvnhome = tool 'M3'
     }
     stage('Build') {
         
-        sh "mvn clean package"
+	    withEnv(["MVN_HOME=$mvnHome"]) {
+            
+                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+	    }
     }
   
     stage('Build image') {
