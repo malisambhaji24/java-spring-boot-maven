@@ -1,9 +1,9 @@
 node {
     def app
-	def mvnhome
+	def mvnHome
 	stage('Preparation') {
         checkout scm
-             mvnhome = tool 'M3'
+             mvnHome = tool 'M3'
     }
     stage('Build') {
         
