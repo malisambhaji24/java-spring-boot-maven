@@ -2,7 +2,7 @@ node {
     def app
 	def mvnHome
 	stage('Preparation') {
-        git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+        git 'https://github.com/malisambhaji24/java-spring-boot-maven.git'
              mvnHome = tool 'M3'
     }
     stage('Build') {
@@ -25,7 +25,7 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build("sambhaji24/techverito")
+        app = docker.build("sambhaji24/kiran")
     }
 
     stage('Push image') {
