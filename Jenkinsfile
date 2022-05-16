@@ -1,10 +1,6 @@
 node {
     def app
-	tools {
-        maven 'MAVEN'
-        dockerTool 'docker'
-    }
-       
+	       
         stage('BUILD'){
             echo "BUILDING THE IMAGE... "                
                 sh "mvn clean package"
