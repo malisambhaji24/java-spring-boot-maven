@@ -2,7 +2,7 @@ node {
     def app
 	def mvnHome
 	stage('Preparation') {
-        git 'https://github.com/malisambhaji24/java-spring-boot-maven.git'
+        checkout scm
              mvnHome = tool 'M3'
     }
     stage('Build') {
@@ -15,15 +15,7 @@ node {
             }
         }
     }
-        stage('BUILD'){
-            echo "BUILDING THE IMAGE... "                
-                sh "mvn clean package"
-	}
-
-    stage('Clone repository') {
-        checkout scm
-    }
-
+  
     stage('Build image') {
         app = docker.build("sambhaji24/kiran")
     }
