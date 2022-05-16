@@ -1,6 +1,6 @@
 node {
     def app
-	def mvnHome
+	def mvn
 	stage('Preparation') {
         checkout scm
              mvn = tool 'M3'
