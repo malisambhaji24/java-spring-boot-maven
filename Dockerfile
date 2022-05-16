@@ -1,4 +1,4 @@
 FROM openjdk:8
-ADD target/HelloWorldSpringBootPomApplication.java HelloWorldSpringBootPomApplication.java
+ADD ./.mvn/wrapper/maven-wrapper.jar maven-wrapper.jar
 EXPOSE 80
 
