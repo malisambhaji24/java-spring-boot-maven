@@ -1,6 +1,20 @@
 node {
     def app
-	       
+	def mvnHome
+	stage('Preparation') {
+        git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+             mvnHome = tool 'M3'
+    }
+    stage('Build') {
+        
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            if (isUnix()) {
+                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+            } else {
+                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+            }
+        }
+    }
         stage('BUILD'){
             echo "BUILDING THE IMAGE... "                
                 sh "mvn clean package"
