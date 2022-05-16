@@ -24,8 +24,8 @@ pipeline {
   stage('Docker Build and Tag') {
            steps {
               
-                sh 'docker build -t samplewebapp:Sample .' 
-                sh 'docker tag samplewebapp malisambhaji24/java-spring-boot'
+                sh 'docker build -t java-spring-boot .' 
+                sh 'docker tag new sambhaji24/java-spring-boot'
                                
           }
         }
@@ -33,28 +33,13 @@ pipeline {
   stage('Publish image to Docker Hub') {
           
             steps {
-        withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
-          sh  'docker push malisambhaji24/java-spring-boot
+        withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) 
+          sh  'docker push sambhaji24/java-spring-boot
        
         }
                   
           }
         }
      
-      //age('Run Docker container on Jenkins Agent') {
-             
-            //eps 
-			{
-                sh "docker run -d -p 8003:80 malisambhaji24/java-spring-boot
- 
-            }
-        }
- //age('Run Docker container on remote hosts') {
-             
-            //eps {
-                sh "docker -H ssh://jenkins@172.31.28.25 run -d -p 8003:8080 malisambhaji24/samplewebapp"
- 
-            }
-        }
-    }
+      
 	}
