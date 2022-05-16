@@ -1,11 +1,9 @@
 node {
     def app
-  tools {
-       maven 'MAVEN'
-  }
+ 
     stage('Clone repository') {
         checkout scm
-        sh "mvn -Dmaven.test.failure.ignore=true clean package"
+        
     }
 
     stage('Build image') {
