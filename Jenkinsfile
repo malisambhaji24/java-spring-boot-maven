@@ -33,7 +33,7 @@ pipeline {
   stage('Publish image to Docker Hub') {
           
             steps {
-        withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) 
+        withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) '
           sh  'docker push sambhaji24/java-spring-boot
        
         }
